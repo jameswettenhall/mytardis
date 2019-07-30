@@ -6,7 +6,6 @@ const webpack = require("webpack");
 const BundleTracker = require("webpack-bundle-tracker");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
 const glob = require("glob");
 
 module.exports = {
@@ -29,38 +28,6 @@ module.exports = {
     output: {
         path: path.resolve("./assets/bundles/"),
         filename: "[name].js"
-    },
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                chunkFilter: (chunk) => {
-                    if (chunk.name === "tardis_portal_facility_view") {
-                        return false;
-                    }
-                    return true;
-                }
-            })],
-        splitChunks: {
-            chunks: "async",
-            minSize: 30000,
-            maxSize: 0,
-            minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: "~",
-            name: true,
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10,
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
-                }
-            }
-        }
     },
     plugins: [
         new BundleTracker({
