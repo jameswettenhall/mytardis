@@ -7,6 +7,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 
+from taggit.managers import TaggableManager
+
 from ..managers import OracleSafeManager
 from .storage import StorageBox
 
@@ -47,6 +49,7 @@ class Dataset(models.Model):
     immutable = models.BooleanField(default=False)
     instrument = models.ForeignKey(Instrument, null=True, blank=True,
                                    on_delete=models.CASCADE)
+    tags = TaggableManager(blank=True)
     objects = OracleSafeManager()
 
     class Meta:

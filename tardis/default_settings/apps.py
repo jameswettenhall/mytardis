@@ -15,6 +15,7 @@ INSTALLED_APPS = (
     'registration',
     'bootstrapform',
     'jstemplate',
+    'taggit',
     'tastypie',
     'tastypie_swagger',
     'webpack_loader',

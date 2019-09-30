@@ -110,7 +110,9 @@ def experiment_datasets_json(request, experiment_id):
                          exclude=['datafiles'])
         for ds in experiment.datasets.all().order_by(dataset_ordering)]
 
-    return HttpResponse(json.dumps(objects, cls=DjangoJSONEncoder), content_type='application/json')
+    return HttpResponse(
+        json.dumps(objects, cls=DjangoJSONEncoder, default=str),
+        content_type='application/json')
 
 
 def retrieve_licenses(request):
