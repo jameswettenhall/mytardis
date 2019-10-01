@@ -16,6 +16,20 @@ export function configureKeywordsSelect() {
     $(".select2-selection").css("background-color", "#fff");
 }
 
+export function updateKeywords() {
+    var tags = $(".keywords").select2("val");
+    $.ajax({
+        type: "PATCH",
+        url: "/api/v1/dataset/" + $("#dataset-id").val() + "/",
+        headers: {"X-CSRFToken": $("#csrf-token").val()},
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({tags: tags}),
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("Failed to update keywords");
+        }
+    });
+}
+
 $(document).ready(function() {
 
     // Create a reload event handler
@@ -67,16 +81,6 @@ $(document).ready(function() {
     configureKeywordsSelect();
 
     $(".keywords").on("select2:select select2:unselect", function(evt) {
-        var tags = $(".keywords").select2("val");
-        $.ajax({
-            type: "PATCH",
-            url: "/api/v1/dataset/" + $("#dataset-id").val() + "/",
-            headers: {"X-CSRFToken": $("#csrf-token").val()},
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({tags: tags}),
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert("Failed to update keywords");
-            }
-        });
+        updateKeywords();
     });
 });

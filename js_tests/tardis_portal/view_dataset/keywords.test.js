@@ -1,10 +1,20 @@
 /* global QUnit */
 
 import {
-    configureKeywordsSelect
+    configureKeywordsSelect,
+    updateKeywords
 } from "../../../assets/js/tardis_portal/view_dataset/ready.js";
 
-QUnit.module("tardis_portal.view_dataset.keywords");
+require("jquery-mockjax/dist/jquery.mockjax")(jQuery, window);
+
+QUnit.module("tardis_portal.view_dataset.keywords", {
+    beforeEach: function(assert) {
+        $.ajaxSetup({ async: false });
+    },
+    afterEach: function(assert) {
+        $.ajaxSetup({ async: true });
+    }
+});
 
 QUnit.test("Test configuring empty keywords select", function(assert) {
 
@@ -66,4 +76,41 @@ QUnit.test("Test configuring non-empty keywords select", function(assert) {
     keywordsList = $("#qunit-fixture").find("ul.select2-selection__rendered").find("li");
     assert.equal($(keywordsList[0]).attr("title"), "tag1");
     assert.equal($(keywordsList[1]).attr("title"), "tag2");
+});
+
+QUnit.test("Test updating keywords", function(assert, expect) {
+
+    $("#qunit-fixture").append(`
+        <input type="hidden" id="dataset-id" value="123">
+        <input type="hidden" id="csrf-token" value="ABCDE">
+        <div id="keywords">
+         <h3>Keyword(s)</h3>
+         <div class="info-box">
+           <select id="keywords" class="keywords form-control" multiple="multiple">
+             <option value="tag1" selected="selected">tag1</option>
+             <option value="tag2" selected="selected">tag2</option>
+           </select>
+         </div>`);
+
+    configureKeywordsSelect();
+
+    var tags = $("#qunit-fixture").find(".keywords").select2("val");
+    assert.deepEqual(tags, ["tag1", "tag2"]);
+
+    $.mockjax({
+        url: "/api/v1/dataset/123/",
+        contentType: "application/json",
+        responseText: "{}",
+        data: function(json) {
+            assert.deepEqual(
+                JSON.parse(json),
+                {
+                    tags: ["tag1", "tag2"]
+                }
+            );
+            return true;
+        }
+    });
+
+    updateKeywords();
 });
