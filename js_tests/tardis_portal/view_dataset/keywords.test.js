@@ -3,7 +3,7 @@
 import {
     configureKeywordsSelect,
     updateKeywords
-} from "../../../assets/js/tardis_portal/view_dataset/ready.js";
+} from "../../../assets/js/tardis_portal/view_dataset/keywords.js";
 
 require("jquery-mockjax/dist/jquery.mockjax")(jQuery, window);
 
