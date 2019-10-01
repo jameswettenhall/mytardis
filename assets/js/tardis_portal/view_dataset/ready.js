@@ -1,4 +1,21 @@
 /* global prevFileSelect */
+
+export function configureKeywordsSelect() {
+    $(".keywords").select2({
+        tags: true,
+        tokenSeparators: [",", ";"],
+        selectOnClose: true,
+        placeholder: "Add keyword(s). Press enter after each.",
+        // disabled: "readonly"
+    }).on("select2:open", function(evt) {
+        $(".select2-container--open .select2-dropdown--below").css("display", "none");
+    });
+
+    $(".select2-selection").css("border-width", "0px");
+    $(".select2-selection").css("border-color", "gray");
+    $(".select2-selection").css("background-color", "#fff");
+}
+
 $(document).ready(function() {
 
     // Create a reload event handler
@@ -47,15 +64,7 @@ $(document).ready(function() {
         $("#upload_button_code").load($("#upload-method-url").val());
     }
 
-    $(".keywords").select2({
-        tags: true,
-        tokenSeparators: [",", ";"],
-        selectOnClose: true,
-        placeholder: "Add keyword(s). Press enter after each.",
-        // disabled: "readonly"
-    }).on("select2:open", function(evt) {
-        $(".select2-container--open .select2-dropdown--below").css("display", "none");
-    });
+    configureKeywordsSelect();
 
     $(".keywords").on("select2:select select2:unselect", function(evt) {
         var tags = $(".keywords").select2("val");
@@ -70,8 +79,4 @@ $(document).ready(function() {
             }
         });
     });
-
-    $(".select2-selection").css("border-width", "0px");
-    $(".select2-selection").css("border-color", "gray");
-    $(".select2-selection").css("background-color", "#fff");
 });
