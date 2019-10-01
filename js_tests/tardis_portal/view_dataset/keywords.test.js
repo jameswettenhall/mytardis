@@ -4,16 +4,7 @@ import {
     configureKeywordsSelect
 } from "../../../assets/js/tardis_portal/view_dataset/ready.js";
 
-require("jquery-mockjax/dist/jquery.mockjax")(jQuery, window);
-
-QUnit.module("tardis_portal.view_dataset.keywords", {
-    beforeEach: function(assert) {
-        $.ajaxSetup({ async: false });
-    },
-    afterEach: function(assert) {
-        $.ajaxSetup({ async: true });
-    }
-});
+QUnit.module("tardis_portal.view_dataset.keywords");
 
 QUnit.test("Test configuring empty keywords select", function(assert) {
 
