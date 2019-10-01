@@ -234,15 +234,14 @@
        {# include "tardis_portal/ajax/datafile_details.html" #}
     </div>  <!-- id="metadata-pane-datafile" -->
     <div id="keywords">
-      <h3 style="margin:0px;">Keyword(s)</h3>
-        <div class="info-box" style="padding:0;">
-          <select id="keywords" class="keywords form-control" multiple="multiple"
-                  style="width: 60%;">
-                {% for tag in dataset.tags.all %}
-                  <option value="{{tag}}" selected="selected">{{tag}}</option>
-                {% endfor %}
-          </select>
-        </div>
+      <h3>Keyword(s)</h3>
+      <div class="info-box">
+        <select id="keywords" class="keywords form-control" multiple="multiple">
+          {% for tag in dataset.tags.all %}
+            <option value="{{tag}}" selected="selected">{{tag}}</option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
     <div id="metadata-pane">
       {% include "tardis_portal/ajax/dataset_metadata.html" %}
