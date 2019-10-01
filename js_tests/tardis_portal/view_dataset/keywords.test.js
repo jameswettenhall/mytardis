@@ -78,7 +78,7 @@ QUnit.test("Test configuring non-empty keywords select", function(assert) {
     assert.equal($(keywordsList[1]).attr("title"), "tag2");
 });
 
-QUnit.test("Test updating keywords", function(assert, expect) {
+QUnit.test("Test updating keywords", function(assert) {
 
     $("#qunit-fixture").append(`
         <input type="hidden" id="dataset-id" value="123">
