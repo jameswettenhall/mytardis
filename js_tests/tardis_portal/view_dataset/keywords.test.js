@@ -40,3 +40,30 @@ QUnit.test("Test configuring empty keywords select", function(assert) {
     assert.equal(select2Selection.css("border-color"), "rgb(128, 128, 128)");
     assert.equal(select2Selection.css("background-color"), "rgb(255, 255, 255)");
 });
+
+QUnit.test("Test configuring non-empty keywords select", function(assert) {
+
+    $("#qunit-fixture").append(`
+        <div id="keywords">
+         <h3>Keyword(s)</h3>
+         <div class="info-box">
+           <select id="keywords" class="keywords form-control" multiple="multiple">
+             <option value="tag1" selected="selected">tag1</option>
+             <option value="tag2" selected="selected">tag2</option>
+           </select>
+         </div>`);
+
+    // Before applying the select2() function to the keywords select element,
+    // we don't expect to find an unordered list of class "select2-selection__rendered":
+    var keywordsList = $("#qunit-fixture").find("ul.select2-selection__rendered").find("li");
+    assert.equal(keywordsList.length, 0);
+
+    configureKeywordsSelect();
+
+    // After applying the select2() function to the keywords select element,
+    // we expect to find an unordered list of class "select2-selection__rendered",
+    // whose first two elements match the select options above:
+    keywordsList = $("#qunit-fixture").find("ul.select2-selection__rendered").find("li");
+    assert.equal($(keywordsList[0]).attr("title"), "tag1");
+    assert.equal($(keywordsList[1]).attr("title"), "tag2");
+});
