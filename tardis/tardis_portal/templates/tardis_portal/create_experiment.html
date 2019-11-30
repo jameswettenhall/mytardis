@@ -2,41 +2,74 @@
 {% load render_bundle from webpack_loader %}
 
 {% block content %}
+<div id="content" class="container">
   <div class="page-header">
     <h1 class="title">{{ subtitle }}</h1>
   </div>
-  {{ form.non_field_errors }}
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <form id="create_experiment_form" action="" method="POST"
-            class="form-horizontal">{% csrf_token %}
-        {% load bootstrap %}
-        {{ form.title|bootstrap_horizontal:'col-md-3' }}
-        {{ form.authors|bootstrap_horizontal:'col-md-3' }}
-        {{ form.institution_name|bootstrap_horizontal:'col-md-3' }}
-        {{ form.description|bootstrap_horizontal:'col-md-3' }}
-        <div class="form-group">
-          <div class="col-md-offset-3 col-md-4">
-            <button type="submit" class="btn btn-primary">
-              <i class="fa fa-ok"></i> Save
-            </button>
+            class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 " for="title">Title</label>
+          <div class=" col-md-9 ">
+            <input type="text" name="title" class="form-control form-control-sm" required="" id="title"
+                 value="{% if experiment %}{{experiment.title}}{% endif %}">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 " for="authors">Authors</label>
+          <div class=" col-md-9 ">
+            <input type="text" name="authors"
+                   placeholder="eg. Howard W. Florey, Brian Schmidt (http://nla.gov.au/nla.party-1480342)"
+                   class="form-control form-control-sm" required="" id="authors"
+                   value="{% if form %}{{form.authors.value}}{% endif %}">
+            <p class="help-block mb-0">
+                Comma-separated authors and optional emails/URLs
+            </p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 " for="institution_name">Institution name</label>
+          <div class=" col-md-9 ">
+            <input type="text" name="institution_name" value="{{ form.institution_name.value }}"
+                 class="form-control form-control-sm" required="" id="institution_name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 " for="description">Description</label>
+          <div class=" col-md-9 ">
+            <textarea name="description" cols="40" rows="6" class="form-control form-control-sm" id="description"
+            >{% if experiment %}{{experiment.description}}{% endif %}</textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-md-3 col-md-9 text-right">
             {% if experiment_id %}
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-outline btn-sm">
               <a href="{% url 'tardis_portal.view_experiment' experiment_id %}">
+                 <i class="fa fa-close"></i>
                  Cancel
             </a>
             </button>
             {% else %}
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-outline btn-sm">
                <a href="{% url 'tardis.tardis_portal.views.my_data' %}">
-               Cancel
+                 <i class="fa fa-close"></i>
+                 Cancel
                </a>
             </button>
             {% endif %}
+            <button type="submit" class="btn btn-primary btn-sm">
+              <i class="fa fa-check"></i>
+              Save
+            </button>
           </div>
         </div>
       </form>
     </div>
   </div>
   {% render_bundle 'tardis_portal_create_experiment' %}
+</div>
 {% endblock %}

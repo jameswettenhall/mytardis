@@ -146,7 +146,7 @@
               <div class="dropdown-menu dropdown-menu-right">
                 {% for menu_item in user_menu %}
                   {% if not menu_item.divider %}
-                    <a class="dropdown-item" href="{{ menu_item.url }}">
+                    <a class="dropdown-item py-1" href="{{ menu_item.url }}">
                       <i class="{{menu_item.icon}}"
                          {% if menu_item.style %}
                            style="{{menu_item.style}}"
@@ -164,19 +164,22 @@
           {% else %}
             {% if registration_enabled %}
             <li>
-              <a href="{% url 'tardis.tardis_portal.views.register' %}">
+              <a class="btn btn-outline-light btn-sm"
+                 href="{% url 'tardis.tardis_portal.views.register' %}">
                 Register
               </a>
             </li>
             {% endif %}
             <li>
             {% if RAPID_CONNECT_ENABLED %}
-                <a id="login-button" href={{ RAPID_CONNECT_LOGIN_URL }}>
+                <a class="btn btn-primary btn-sm" id="login-button"
+                   href={{ RAPID_CONNECT_LOGIN_URL }}>
                   <i class="fa fa-sign-in"></i>
                   Log In
                 </a>
             {% else %}
-              <a class="btn btn-outline-light" id="login-button" href="{% url 'tardis.tardis_portal.views.login' %}">
+              <a class="btn btn-primary btn-sm" id="login-button"
+                 href="{% url 'tardis.tardis_portal.views.login' %}">
                 <i class="fa fa-sign-in"></i>
                 Log In
               </a>

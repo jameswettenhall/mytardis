@@ -1,9 +1,6 @@
 {% extends "tardis_portal/portal_template.html" %}
 {% load render_bundle from webpack_loader %}
 
-{% load bootstrap %}
-
-
 {% block content %}
 <div class="page-header">
   {% if dataset %}
@@ -16,26 +13,60 @@
 <div class="row">
   <div class="col-md-8">
     <form id="add-or-edit-dataset-form"
-          class="form-horizontal" action="" method="post">{% csrf_token %}
-      {{ form|bootstrap_horizontal:'col-md-2' }}
-      <div class="form-group">
-        <div class="col-md-offset-2 col-md-6">
-          <button type="submit" class="btn btn-primary">
-            Save
-          </button>
+          class="form-horizontal" action="" method="post">
+      {% csrf_token %}
+      <div class="form-group row">
+        <label class="col-form-label col-md-2 " for="id_description">Description</label>
+        <div class=" col-md-10 ">
+          <input type="text" name="description" class="form-control form-control-sm" required="" id="id_description"
+                 value="{% if dataset %}{{dataset.description}}{% endif %}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2 " for="id_directory">Directory</label>
+        <div class=" col-md-10 ">
+          <input type="text" name="directory" maxlength="255" class="form-control form-control-sm" id="id_directory"
+                 value="{% if dataset and dataset.directory %}{{dataset.directory}}{% endif %}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2 " for="id_instrument">Instrument</label>
+        <div class=" col-md-10 ">
+          <select name="instrument" class="form-control form-control-sm" id="id_instrument">
+            <option value=""
+                    {% if not dataset or not dataset.instrument %}selected="selected"{% endif %}
+            >---------</option>
+            {% for instrument in instruments %}
+              <option value="{{instrument.id}}"
+                      {% if dataset and dataset.instrument and dataset.instrument.id == instrument.id %}selected="selected"{% endif %}
+              >
+              {{instrument.name}}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-md-2 col-md-10 text-right">
           {% if dataset %}
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-outline btn-sm">
               <a href="{% url 'tardis_portal.view_dataset' dataset.id %}">
+                 <i class="fa fa-close"></i>
                  Cancel
             </a>
             </button>
           {% else %}
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-outline btn-sm">
                <a href="{% url 'tardis.tardis_portal.views.my_data' %}">
-               Cancel
+                 <i class="fa fa-close"></i>
+                 Cancel
                </a>
             </button>
           {% endif %}
+          <button type="submit" class="btn btn-primary btn-sm ml-0">
+            <i class="fa fa-check"></i>
+            Save
+          </button>
         </div>
       </div>
     </form>

@@ -57,7 +57,7 @@
     </a>
     {% endif %}
     {% if has_write_permissions %}
-    <a class="btn btn-sm btn-warning" title="Edit Experiment"
+    <a class="btn btn-sm btn-success px-2" title="Edit Experiment"
        href="{{ experiment.get_edit_url }}">
       <i class="fa fa-pencil"></i>
       Edit Experiment
@@ -86,21 +86,21 @@
 </div>
 
 <div class="row" >
-  <div class="col-md-5">
-  <div class="card border-0">
-    <div class="card-body">
-      <div id="collapseDescription">
-        <p class="card-text bg-light collapse" id="collapseContent" property="dc:abstract">
-        {{ experiment.description|bleach|linebreaksbr }}
-        </p>
-        <p class="font-weight-bold collapsed" data-toggle="collapse"
-           href="#collapseContent" aria-expanded="false" aria-controls="collapseContent" title="Show Description">
-        </p>
-      </div>
+  <div class="col-md-6">
+    <div align="center" style="margin-bottom: -12px;">
+      <div id="abstractHolder" style="display: none">{{ experiment.description|bleach|linebreaksbr }}</div>
+      <a id="abstract-toggle" class="btn btn-light btn-sm p-2"
+         title="Show Description"
+         style="display: inline; color: black;"
+      >Show Description</a>
     </div>
-  </div>
+    <div class="pt-2">
+      <p class="abstract well info-box abstract-clickable p-2 ml-0" property="dc:abstract" style="height: 45px;">
+        <span id="abstractText">{{ experiment.description }}</span>
+      </p>
+    </div>
     <!-- Tab buttons -->
-    <ul id="experiment-tabs" class="nav nav-pills" style="padding-top: 1.25rem">
+    <ul id="experiment-tabs" class="nav nav-tabs" style="padding-top: 1.25rem">
       {% for appurl, appname in apps %}
       <li class="nav-item"><a class="nav-link" data-toggle="tab" title="{{appname}}" data-url="{{ appurl }}">{{ appname }}</a></li>
       {% endfor %}
@@ -111,7 +111,7 @@
       </div>
     </div>
   </div>
-  <div id="datasets-pane" class="col-md-7">
+  <div id="datasets-pane" class="col-md-6">
     {% include "tardis_portal/ajax/experiment_datasets.html" %}
   </div>
 </div>

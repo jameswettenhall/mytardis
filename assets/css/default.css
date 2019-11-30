@@ -3,6 +3,8 @@ html{
 }
 body {
   min-height: 100%;
+  font-size: 14px;
+  line-height: 1;
 }
 
 /* Inset brand in nav bar */
@@ -88,11 +90,6 @@ div.copylink {
     word-wrap: break-word;
 }
 
-.download-selected {
-    font-weight: bold;
-    margin-bottom: 12px;
-}
-
 /*override for bootstrap nav pills*/
 .nav-pills > .active > a, .nav-pills > .active > a:hover {
     background-color: #D3DFE6;
@@ -101,7 +98,6 @@ div.copylink {
 }
 
 .dataset-link {
-    font-weight: bold;
     font-size: 110%;
 }
 

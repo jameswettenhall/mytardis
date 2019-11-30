@@ -1,14 +1,37 @@
 {% if not user_created %}
-<div class="user_create">
-    <p>
-      {% for field in createUserPermissionsForm %}
-        <p>{{ field.label }}:<br/> {{ field }}</p>
-      {% endfor %}
-      <a class="form_submit btn btn-primary" id="user" href="">
-        <i class="fa fa-plus"></i>
-        Create User
-      </a>
-    </p>
+<div class="user_create container">
+  <form role="form" class="form-horizontal">
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="id_username">Username:</label>
+      <input type="text" name="username" id="id_username" required
+             class="col-md-9 form-control form-control-sm" maxlength="100">
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="id_email">Email address:</label>
+      <input type="text" name="email" id="id_email" required
+             class="col-md-9 form-control form-control-sm" maxlength="100">
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="id_password">Password:</label>
+      <input id="id_password" class="col-md-9 form-control form-control-sm"
+             type="password" name="password" autocomplete="password">
+    </div>
+
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="id_password2">Password (again):</label>
+      <input id="id_password2" class="col-md-9 form-control form-control-sm"
+             type="password2" name="password2"/>
+    </div>
+
+    <div class="form-group row text-right">
+      <div class="offset-md-3 col-md-9">
+        <button type="button" class="form_submit btn btn-primary btn-sm" id="user">
+          <i class="fa fa-plus"></i>
+          Create User
+        </button>
+      </div>
+    </div>
 </div>
 {% else %}
 Created user: {{user_created}}

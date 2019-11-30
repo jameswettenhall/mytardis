@@ -11,10 +11,10 @@
 <div id="content" class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="visible-xs">Experiments</h2>
+      <h2 class="d-block d-sm-none">Experiments</h2>
       <div class="pull-right">
         {% if perms.tardis_portal.add_experiment %}
-        <a class="btn btn-warning btn-sm"
+        <a class="btn btn-warning btn-sm px-2"
            href="{% url 'tardis.tardis_portal.views.create_experiment' %}">
           <i class="fa fa-plus"></i>
           Create
@@ -41,11 +41,13 @@
         Shared Experiment{{ shared_experiments.count|pluralize }}</h3>
       </div>
       <div class="pull-right">
-        <button type="button" class="btn btn-success btn-sm"
+        <button type="button" class="btn btn-light btn-sm"
                 onclick="$('#myshared .panel-collapse').collapse('hide');" >
+        <i class="fa fa-compress"></i>
         Collapse all</button>
-        <button type="button" class="btn btn-success btn-sm"
+        <button type="button" class="btn btn-light btn-sm"
                 onclick="$('#myshared .panel-collapse').collapse('show');" >
+        <i class="fa fa-expand"></i>
         Expand all</button>
       </div>
       <div class="clearfix"></div>

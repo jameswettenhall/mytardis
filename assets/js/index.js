@@ -28,3 +28,4 @@ require("../css/jquery-ui/jquery-ui-1.8.18.custom.css");
 require("font-awesome/css/font-awesome.css");
 require("../css/default.css");
 require("blueimp-file-upload/css/jquery.fileupload.css");
+require("mdbootstrap/css/mdb.css");

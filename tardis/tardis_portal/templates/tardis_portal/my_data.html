@@ -16,7 +16,7 @@
       <div class="pull-right">
         {% if perms.tardis_portal.add_experiment %}
         <a id="create-experiment"
-           class="btn btn-warning btn-sm"
+           class="btn btn-primary btn-sm px-2"
            href="{% url 'tardis.tardis_portal.views.create_experiment' %}">
           <i class="fa fa-plus"></i>
           Create
@@ -44,11 +44,13 @@
         </h3>
       </div>
       <div class="pull-right">
-        <button type="button" class="btn btn-success btn-sm"
+        <button type="button" class="btn btn-light btn-sm px-2"
                 onclick="$('#myowned .panel-collapse').collapse('hide');" >
+        <i class="fa fa-compress"></i>
         Collapse all</button>
-        <button type="button" class="btn btn-success btn-sm"
+        <button type="button" class="btn btn-light btn-sm px-2"
                 onclick="$('#myowned .panel-collapse').collapse('show');" >
+        <i class="fa fa-expand"></i>
         Expand all</button>
       </div>
       <div class="clearfix"></div>

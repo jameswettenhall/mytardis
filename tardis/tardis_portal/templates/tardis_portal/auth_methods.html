@@ -14,7 +14,7 @@
 {% for userAuth in userAuthMethodList %}
 <div class="authMethod" id="authMethod_{{ userAuth.2 }}"
      data-auth-desc="{{ userAuth.1 }}">
-  <table class="table table-condensed table-bordered">
+  <table class="table table-sm table-bordered">
     <tr>
       <th>Username:</th>
       <td> {{ userAuth.0 }} &nbsp;
@@ -77,35 +77,35 @@
   </p>
 
   <div class="form-change-password">
-    <legend>Change Password</legend>
+    <legend class="mb-2">Change Password</legend>
     <form action="." method="post" class="form-horizontal">{% csrf_token %}
-      <div class="form-group">
-        <label class="col-md-2 control-label" for="id_currentPassword">Current Password</label>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label" for="id_currentPassword">Current Password</label>
         <div class="col-md-10">
-          <input id="id_currentPassword" class="form-control" type="password"
+          <input id="id_currentPassword" class="form-control form-control-sm" type="password"
                  name="currentPassword" autocomplete="current-password"
                  style="max-width: 200px;"/>
         </div>
       </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label" for="id_newPassword">New Password</label>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label" for="id_newPassword">New Password</label>
         <div class="col-md-10">
-          <input id="id_newPassword" class="form-control" type="password"
+          <input id="id_newPassword" class="form-control form-control-sm" type="password"
                  name="password" autocomplete="new-password"
                  style="max-width: 200px;" />
         </div>
       </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label" for="id_newPassword1">Confirm Password</label>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label" for="id_newPassword1">Confirm Password</label>
         <div class="col-md-10">
-          <input id="id_newPassword1" class="form-control" type="password"
+          <input id="id_newPassword1" class="form-control form-control-sm" type="password"
                  name="password1" autocomplete="new-password1"
                  style="max-width: 200px;" />
         </div>
       </div>
-      <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-          <button type="submit" id="edit" class="btn btn-warning" style="max-width: 200px;">
+      <div class="form-group row">
+        <div class="offset-md-2 col-md-10">
+          <button type="submit" id="edit" class="btn btn-warning btn-sm ml-0" style="max-width: 200px;">
             <i class="fa fa-key"></i>
             Change Password
           </button>
@@ -115,7 +115,7 @@
   </div>
 
   <div class="authMethod">
-    <table class="table table-condensed table-bordered">
+    <table class="table table-sm table-bordered">
       <tr>
         <th>Username:</th>
         <td><span class="username"></span> &nbsp;

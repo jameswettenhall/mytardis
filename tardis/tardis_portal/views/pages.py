@@ -29,7 +29,7 @@ from ..auth.decorators import (
 )
 from ..auth.localdb_auth import django_user
 from ..forms import ExperimentForm, DatasetForm
-from ..models import Experiment, Dataset, DataFile, ObjectACL
+from ..models import Experiment, Dataset, DataFile, ObjectACL, Instrument
 from ..shortcuts import render_response_index, \
     return_response_error, return_response_not_found, get_experiment_referer
 from ..views.utils import (
@@ -707,8 +707,11 @@ def edit_experiment(request, experiment_id,
     """
     experiment = Experiment.objects.get(id=experiment_id)
 
-    c = {'subtitle': 'Edit Experiment',
-         'experiment_id': experiment_id, }
+    context = {
+        'subtitle': 'Edit Experiment',
+        'experiment_id': experiment_id,
+        'experiment': experiment
+    }
 
     if request.method == 'POST':
         form = ExperimentForm(data=request.POST, instance=experiment, extra=0)
@@ -724,14 +727,14 @@ def edit_experiment(request, experiment_id,
                                                args=[str(experiment.id)]) +
                                        "#saved")
 
-        c['status'] = "Errors exist in form."
-        c["error"] = 'true'
+        context['status'] = "Errors exist in form."
+        context["error"] = 'true'
     else:
         form = ExperimentForm(instance=experiment, extra=0)
 
-    c['form'] = form
+    context['form'] = form
 
-    return render_response_index(request, template, c)
+    return render_response_index(request, template, context)
 
 
 @login_required
@@ -756,7 +759,11 @@ def add_dataset(request, experiment_id):
     else:
         form = DatasetForm()
 
-    c = {'form': form}
+    instruments = Instrument.objects.all()
+    c = {
+        'form': form,
+        'instruments': instruments
+    }
     return render_response_index(
         request, 'tardis_portal/add_or_edit_dataset.html', c)
 
@@ -780,7 +787,12 @@ def edit_dataset(request, dataset_id):
     else:
         form = DatasetForm(instance=dataset)
 
-    c = {'form': form, 'dataset': dataset}
+    instruments = Instrument.objects.all()
+    c = {
+        'form': form,
+        'dataset': dataset,
+        'instruments': instruments
+    }
     return render_response_index(
         request, 'tardis_portal/add_or_edit_dataset.html', c)
 

@@ -23,17 +23,20 @@
       </p>
       {% else %}
       <div class="pull-left">
-        <h3><strong>{{ public_experiments.count }}</strong>
+        <h3>{{ public_experiments.count }}
         Public Experiment{{ public_experiments.count|pluralize}}
         </h3>
       </div>
       <div class="pull-right">
-        <button type="button" class="btn btn-success btn-sm"
+        <button type="button" class="btn btn-light btn-sm px-2"
                 onclick="$('#public-experiments .panel-collapse').collapse('hide');" >
-        Collapse all</button>
-        <button type="button" class="btn btn-success btn-sm"
+          <i class="fa fa-compress"></i>
+          Collapse all</button>
+        <button type="button" class="btn btn-light btn-sm px-2"
                 onclick="$('#public-experiments .panel-collapse').collapse('show');" >
-        Expand all</button>
+          <i class="fa fa-expand"></i>
+          Expand all
+        </button>
       </div>
       <div class="clearfix"></div>
       <div id="public-experiments" class="panel-group experiments">
@@ -43,11 +46,9 @@
                 <div class="row">
                   <div class="accordion-toggle col-8" data-toggle="collapse"
                        onclick="$('#collapse{{exp.id}}').collapse('toggle');" >
-                    <strong>
                       <a class="pull-left explink"
                          href="{% url 'tardis_portal.view_experiment' exp.id %}">{{ exp.title }}
                       </a>
-                    </strong>
                   </div>
                   <div class="col">
                     <ul class="list-inline float-right list-unstyled">
@@ -94,7 +95,7 @@
                         <li class="list-group-item dataset-list-header">Latest dataset in this experiment</li>
                     {% endif %}
                     <li class="list-group-item dataset-list-item">
-                        <a href="{% url 'tardis_portal.view_dataset' ds.id %}"><strong>{{ ds.description }}</strong></a>
+                        <a href="{% url 'tardis_portal.view_dataset' ds.id %}">{{ ds.description }}</a>
                     {% if exp.public_download_allowed %}
                       {% for datafile in ds.get_images|slice:":5" %}
                         {% if forloop.first %}
