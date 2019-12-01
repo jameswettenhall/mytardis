@@ -282,9 +282,8 @@
                     <div class="col-md-12" style="text-align:center">
                       <button type="button" class="btn px-2"
                               ng-click="facilityCtrl.loadMoreEntries(50)"
-                              ng-disabled="facilityCtrl.currentFetchLimit >= facilityCtrl.totalDatasets"
+                              ng-hide="facilityCtrl.loading || facilityCtrl.currentFetchLimit >= facilityCtrl.totalDatasets"
                               ng-class="(facilityCtrl.currentFetchLimit >= facilityCtrl.totalDatasets)?'btn-light':'btn-disabled'"
-                              ng-hide="facilityCtrl.loading"
                               ng-cloak>
                         <i class="fa fa-chevron-down"></i>
                         Load more (showing {{facilityCtrl.datasets.length}} of {{facilityCtrl.totalDatasets}})

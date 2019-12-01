@@ -12,14 +12,14 @@
             class="form-horizontal">
         {% csrf_token %}
         <div class="form-group row">
-          <label class="col-form-label col-md-3 " for="title">Title</label>
+          <label class="col-form-label col-md-2 " for="title">Title</label>
           <div class=" col-md-9 ">
             <input type="text" name="title" class="form-control form-control-sm" required="" id="title"
                  value="{% if experiment %}{{experiment.title}}{% endif %}">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-form-label col-md-3 " for="authors">Authors</label>
+          <label class="col-form-label col-md-2 " for="authors">Authors</label>
           <div class=" col-md-9 ">
             <input type="text" name="authors"
                    placeholder="eg. Howard W. Florey, Brian Schmidt (http://nla.gov.au/nla.party-1480342)"
@@ -31,21 +31,21 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-form-label col-md-3 " for="institution_name">Institution name</label>
+          <label class="col-form-label col-md-2 " for="institution_name">Institution name</label>
           <div class=" col-md-9 ">
             <input type="text" name="institution_name" value="{{ form.institution_name.value }}"
                  class="form-control form-control-sm" required="" id="institution_name">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-form-label col-md-3 " for="description">Description</label>
+          <label class="col-form-label col-md-2 " for="description">Description</label>
           <div class=" col-md-9 ">
             <textarea name="description" cols="40" rows="6" class="form-control form-control-sm" id="description"
             >{% if experiment %}{{experiment.description}}{% endif %}</textarea>
           </div>
         </div>
         <div class="form-group row">
-          <div class="offset-md-3 col-md-9 text-right">
+          <div class="offset-md-2 col-md-9 text-right">
             {% if experiment_id %}
             <button type="button" class="btn btn-outline btn-sm">
               <a href="{% url 'tardis_portal.view_experiment' experiment_id %}">
@@ -61,7 +61,7 @@
                </a>
             </button>
             {% endif %}
-            <button type="submit" class="btn btn-primary btn-sm">
+            <button type="submit" class="btn btn-primary btn-sm mr-0">
               <i class="fa fa-check"></i>
               Save
             </button>

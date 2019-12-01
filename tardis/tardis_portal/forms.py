@@ -704,7 +704,8 @@ class RightsForm(ModelForm):
         model = Experiment
         fields = ('public_access', 'license', 'legal_text')
         widgets = {
-            'license': HiddenInput()
+            'license': HiddenInput(),
+            'public_access': forms.Select(attrs={'class': 'form-control-sm'})
         }
 
     def clean(self):

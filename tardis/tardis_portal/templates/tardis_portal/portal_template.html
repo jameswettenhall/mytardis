@@ -133,7 +133,7 @@
                 action="{% url 'search' %}">
                 <div class="form-group">
                   <input id="id_q" autocomplete="off" name="q"
-                       type="text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                       type="text" class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                        {% if query %} value="{{ query }}" {% endif %}/>
                 </div>
             </form>
@@ -301,6 +301,7 @@
       </div>
 
       {% block footer %}
+      <br>
       <div class="row" id="footer">
         <div class="col-md-6">
           {{sponsored_by|default:""|safe}}
