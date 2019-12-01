@@ -175,8 +175,8 @@
                       <tr ng-repeat-start="dataset in facilityCtrl.datasets | filter:facilityCtrl.search_owner:strict | filter:facilityCtrl.search_experiment:strict | filter:facilityCtrl.search_instrument:strict">
                         <td>{{dataset.owner}}</td>
                         <td>{{dataset.group}}</td>
-                        <td><a href="/experiment/view/{{dataset.parent_experiment.id}}/" target="_blank">{{dataset.parent_experiment.title}}</a></td>
-                        <td><a href="/dataset/{{dataset.id}}" target="_blank">{{dataset.description}}</a></td>
+                        <td><a class="table-link" href="/experiment/view/{{dataset.parent_experiment.id}}/" target="_blank">{{dataset.parent_experiment.title}}</a></td>
+                        <td><a class="table-link" href="/dataset/{{dataset.id}}" target="_blank">{{dataset.description}}</a></td>
                         <td>{{dataset.instrument.name}}</td>
                         <td>{{dataset.created_time | date:'yyyy-MM-dd h:mma'}}</td>
                         <td display: "flex;">
@@ -219,8 +219,8 @@
                       <tr ng-repeat-start="dataset in datasetByInstrument.datasets | filter:facilityCtrl.search_owner:strict | filter:facilityCtrl.search_experiment:strict">
                         <td>{{dataset.owner}}</td>
                         <td>{{dataset.group}}</td>
-                        <td><a href="/experiment/view/{{dataset.parent_experiment.id}}/" target="_blank">{{dataset.parent_experiment.title}}</a></td>
-                        <td><a href="/dataset/{{dataset.id}}" target="_blank">{{dataset.description}}</a></td>
+                        <td><a class="table-link" href="/experiment/view/{{dataset.parent_experiment.id}}/" target="_blank">{{dataset.parent_experiment.title}}</a></td>
+                        <td><a class="table-link" href="/dataset/{{dataset.id}}" target="_blank">{{dataset.description}}</a></td>
                         <td>{{dataset.created_time | date:'yyyy-MM-dd h:mma'}}</td>
                         <td display: "flex;">
                           <span ng-include="'showHideFileListButton'"></span>
@@ -259,8 +259,8 @@
                         </th>
                       </tr>
                       <tr ng-repeat-start="dataset in datasetByUser.datasets | filter:facilityCtrl.search_experiment:strict | filter:facilityCtrl.search_instrument:strict">
-                        <td><a href="/experiment/view/{{dataset.parent_experiment.id}}/" target="_blank">{{dataset.parent_experiment.title}}</a></td>
-                        <td><a href="/dataset/{{dataset.id}}" target="_blank">{{dataset.description}}</a></td>
+                        <td><a class="table-link" href="/experiment/view/{{dataset.parent_experiment.id}}/" target="_blank">{{dataset.parent_experiment.title}}</a></td>
+                        <td><a class="table-link" href="/dataset/{{dataset.id}}" target="_blank">{{dataset.description}}</a></td>
                         <td>{{dataset.instrument.name}}</td>
                         <td>{{dataset.created_time | date:'yyyy-MM-dd h:mma'}}</td>
                         <td display: "flex;">
