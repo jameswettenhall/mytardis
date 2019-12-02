@@ -1,5 +1,5 @@
 {% load lookupfilters %}
-<table class="parameter_table table table-striped table-bordered {{ parameterset.schema.name|slugify }}">
+<table class="parameter_table table table-sm table-striped table-bordered {{ parameterset.schema.name|slugify }}">
     <tr>
         <th class="schema_name"
             title="{{ parameterset.schema.namespace }}{% if parameterset.schema.immutable %} (immutable){% endif %}"
@@ -19,7 +19,7 @@
                 <td class="parameter_value">
             {% if parameter.name.units == 'fcs-table' %}
                 {% with table=parameter.get %}
-                    <table>
+                    <table class="table-sm">
                         <thead>
                         <tr>
                             {% for head in table.thead %}

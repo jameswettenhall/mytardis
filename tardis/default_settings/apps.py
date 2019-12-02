@@ -18,6 +18,7 @@ INSTALLED_APPS = (
     'tastypie',
     'tastypie_swagger',
     'webpack_loader',
+    'widget_tweaks',
     'tardis.tardis_portal',
     'tardis.tardis_portal.templatetags',
     'tardis.analytics',

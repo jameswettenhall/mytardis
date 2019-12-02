@@ -40,7 +40,7 @@
         {% endif %}
         <tbody>
         {% for datafile in datafiles.object_list %}
-            <tr class="datafile search_match_file">
+            <tr class="datafile">
                 <td>
                     {% if has_download_permissions and datafile.verified %}
                         <input type="checkbox" style="" class="datafile_checkbox" name="datafile" value="{{datafile.id}}" />
