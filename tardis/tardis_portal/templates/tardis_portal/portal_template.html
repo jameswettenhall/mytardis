@@ -164,7 +164,7 @@
           {% else %}
             {% if registration_enabled %}
             <li>
-              <a class="btn btn-outline-light btn-sm"
+              <a class="btn btn-light btn-sm"
                  href="{% url 'tardis.tardis_portal.views.register' %}">
                 Register
               </a>
@@ -239,7 +239,7 @@
         {% endcomment %}
         <div id="django-message-container" >
           {% for message in messages %}
-            <p{% if message.level_tag %} class="alert alert-block alert-{{ message.level_tag }} alert-dismissible"{% endif %}>
+            <p{% if message.level_tag %} class="alert alert-{{ message.level_tag }} alert-dismissible"{% endif %}>
               <a class="close" data-dismiss="alert">&times;</a>
               {% if 'safe' in message.tags %}
                 {{ message|safe }}
@@ -252,10 +252,12 @@
       {% endif %}
 
       <div id="status-alert"
-           class="alert alert-block {% if error %}alert-danger{% else %}alert-info{% endif %} alert-dismissible"
+           class="alert {% if error %}alert-danger{% else %}alert-info{% endif %} alert-dismissible"
            style="display: none">
-        <a class="close" data-dismiss="alert">&times;</a>
         <span class="message">{{status}}</span>
+        <button type="button" class="close py-2" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <script type="text/javascript">
         $(function() {
           if(window.location.hash == '#created') {

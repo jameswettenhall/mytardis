@@ -48,9 +48,8 @@
     <form id="authForm" action="." method="post" class="form-horizontal">{% csrf_token %}
       <fieldset>
         <legend>Add a new account</legend>
-        {% load bootstrap %}
         {% for field in authForm %}
-          {{ field|bootstrap }}
+          {{ field }}
         {% endfor %}
       </fieldset>
       <div class="">

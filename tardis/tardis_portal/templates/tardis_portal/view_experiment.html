@@ -89,13 +89,12 @@
   <div class="col-md-6">
     <div align="center" style="margin-bottom: -12px;">
       <div id="abstractHolder" style="display: none">{{ experiment.description|bleach|linebreaksbr }}</div>
-      <a id="abstract-toggle" class="btn btn-light btn-sm p-2"
+      <a id="abstract-toggle" class="btn btn-light btn-sm p-1"
          title="Show Description"
-         style="display: inline; color: black;"
-      >Show Description</a>
+         style="display: inline; color: black;">Toggle Full Description</a>
     </div>
     <div class="pt-2">
-      <p class="abstract well info-box abstract-clickable p-2 ml-0" property="dc:abstract" style="height: 45px;">
+      <p class="abstract rounded info-box abstract-clickable ml-0" property="dc:abstract" style="height: 60px;">
         <span id="abstractText">{{ experiment.description }}</span>
       </p>
     </div>

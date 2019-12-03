@@ -1,5 +1,4 @@
 {% load formfieldfilters %}
-{% load bootstrap %}
 {% load widget_tweaks %}
 
 {% if success %}
@@ -10,11 +9,16 @@
   <form id="edit_metadata_form" action='/ajax/edit_{{type}}_parameters/{{parameterset_id}}/' method='post'>{% csrf_token %}
     {{ form.non_field_errors }}
       {% for field in form %}
-        {{ field | bootstrap | add_label_class:"col-form-label-sm" | add_class: "form-control-sm" }}
+        <div class="form-group">
+          <label class="col-form-label-sm py-0" for="{{field.name}}">{{field.label}}</label>
+          <div class="col-md-9 pl-0">
+            {{ field | add_class:"form-control form-control-sm" }}
+          </div>
+        </div>
       {% endfor %}
 
-    <div class="input-group">
-      <select id="parameternameselect" class="form-control">
+    <div class="form-group row">
+      <select id="parameternameselect" class="form-control form-control-sm ml-3 col-md-6">
         {% for pn in parameternames %}
           {% if not pn.immutable %}
             <option value="{{pn.name|parametername_form}}"
@@ -24,12 +28,10 @@
           {% endif %}
         {% endfor %}
       </select>
-      <div class="input-group-btn">
-        <button id="add_new_parameter" type="button" class="btn btn-success btn-sm px-2">
-          <i class="fa fa-plus"></i>
-          Add Metadata Parameter
-        </button>
-      </div>
+      <button id="add_new_parameter" type="button" class="btn btn-success btn-sm my-0">
+        <i class="fa fa-plus"></i>
+        Add Metadata Parameter
+      </button>
     </div>
 
     <p style="padding-top: 10px; padding-bottom: 10px;"><em>Leave a parameter blank to remove</em></p>

@@ -13,7 +13,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.humanize',
     'registration',
-    'bootstrapform',
     'jstemplate',
     'tastypie',
     'tastypie_swagger',

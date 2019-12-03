@@ -1,26 +1,23 @@
-/* tardis/tardis_portal/static/js/jquery/tardis_portal/view_experiment/abbreviate_abstract.js */
-  
-/* eslint global-strict: 0, strict: 0, no-unused-vars: [2, {"vars": "local", "args": "none"}] */
-
+/* Hide or show an experiment's full description */
 
 $(document).ready(function() {
     // Abbreviate abstract
     var hideAbstract = false;
     var spanhtml = $("#abstractHolder").html();
 
-    if(spanhtml.split("<br>").length > 2)
+    if(spanhtml.split("<br>").length > 1 || spanhtml.length > 100)
     {
         hideAbstract = true;
         $("#abstract-toggle").attr("style", "display: inline; color: black;");
 
         $("#abstractText").empty().html(spanhtml);
-        $("#abstractText").parent().attr("style", "height: 45px;");
+        $("#abstractText").parent().attr("style", "height: 60px;");
         $("#abstractText").parent().addClass("abstract-clickable");
 
         $(document).on("click", "#abstract-toggle", function(evt) {
             if(!hideAbstract)
             {
-                $("#abstractText").parent().attr("style", "height: 45px;");
+                $("#abstractText").parent().attr("style", "height: 60px;");
                 hideAbstract = true;
                 $("#abstract-toggle").text("Show Description");
             }
@@ -31,6 +28,11 @@ $(document).ready(function() {
                 $("#abstract-toggle").text("Hide Description");
             }
         });
+    }
+    else if (!spanhtml)
+    {
+        $("#abstractText").parent().attr("style", "height: 30px;");
+        $("#abstract-toggle").attr("style", "display: none;");
     }
     else
     {
